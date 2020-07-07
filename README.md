@@ -1,2 +1,2 @@
 # MathQuestion
-A tool
+ A tool for you to solve math question 
