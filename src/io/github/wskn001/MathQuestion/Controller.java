@@ -20,6 +20,7 @@ public class Controller {
     private TextArea textConsole;
     @FXML
     public void btnRunClicked(MouseEvent mouseEvent) {
+        textConsole.setText("");
         StringBuilder sb = new StringBuilder();
         sb.append(textImport.getText());
         sb.append(
@@ -33,13 +34,15 @@ public class Controller {
         sb.append(textOtherCode.getText());
         sb.append("}");
         writeFile("Main.java" , sb.toString());
-        run(".\\jre\\bin\\java.exe Main.java");
+        run(".\\jre7\\bin\\javac.exe Main.java");
+        run(".\\jre7\\bin\\java.exe Main");
     }
 
 
     public void run(String command){
-        Runtime run =Runtime.getRuntime();
+        Runtime run = Runtime.getRuntime();
         try {
+            textConsole.setText(textConsole.getText() + command + "\n");
             Process p = run.exec(command);
             InputStream ins= p.getInputStream();
             InputStream ers= p.getErrorStream();
@@ -66,12 +69,12 @@ public class Controller {
             int num = 0;
             try {
                 while((num=ins.read(b))!=-1){
-                    line.append(b);
+                    line.append(new String(b));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            textConsole.setText(line.toString());
+            textConsole.setText(textConsole.getText() + line.toString() + "\n");
         }
 
     }
