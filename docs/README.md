@@ -16,4 +16,7 @@ import代码
 &emsp;其他方法  
 &emsp;&emsp;&emsp;语句  
 结束
-
+## 源代码
+见github仓库  
+jdk:openjdk11  
+需要openjfx14的库来运行（库已在jar里包含）
